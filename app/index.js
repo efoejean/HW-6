@@ -53,3 +53,20 @@ fs.writeFile("totalMileage4IL.Json", String(totalMileage4IL));
 fs.readFile("./totalMileage4IL.Json", "utf8").then((contents) => {
   console.log(contents);
 });
+
+const app = express();
+
+app.get("/:page", (req, res) => {
+  fs.readFile(`${req.params.page}.Json`, "utf-8")
+    .then((contents) => {
+      res.json(contents);
+    })
+    .catch(() => {
+      res.statusCode = 404;
+      res.end(404);
+    });
+});
+
+app.listen(3000, () => {
+  console.log("Server is running");
+});
