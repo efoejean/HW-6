@@ -37,3 +37,5 @@ const totalMileage4IL = data
     total += currentVehicle.mileage;
     return total;
   }, 0);
+
+fs.writeFile("totalMileage4IL.Json", String(totalMileage4IL));
