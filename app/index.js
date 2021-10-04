@@ -22,6 +22,8 @@ const yahooEmails = data
   .filter(({ email }) => email.endsWith("yahoo.com"))
   .map(({ email }) => email);
 
+fs.writeFile("yahooEmails.Json", String(yahooEmails));
+
 const hiMileageVehicles = data
   .map(({ vehicles }) => vehicles.filter(({ mileage }) => mileage >= 36000))
   .flat();
