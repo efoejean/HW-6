@@ -28,6 +28,8 @@ const hiMileageVehicles = data
   .map(({ vehicles }) => vehicles.filter(({ mileage }) => mileage >= 36000))
   .flat();
 
+fs.writeFile("hiMileageVehicles.Json", String(hiMileageVehicles));
+
 const totalMileage4IL = data
   .map(({ vehicles }) => vehicles.filter(({ st }) => st === "Illinois"))
   .flat()
