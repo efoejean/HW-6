@@ -16,6 +16,8 @@ const totalMileage = data.reduce((total, currentPerson) => {
   return total;
 }, 0);
 
+fs.writeFile("totalMileage.Json", String(totalMileage));
+
 const yahooEmails = data
   .filter(({ email }) => email.endsWith("yahoo.com"))
   .map(({ email }) => email);
