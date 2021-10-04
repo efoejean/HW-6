@@ -53,7 +53,7 @@ app.get("/:page", (req, res) => {
     })
     .catch(() => {
       res.statusCode = 404;
-      res.end(404);
+      res.end("Page cannot be found!");
     });
 });
 
