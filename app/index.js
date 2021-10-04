@@ -6,7 +6,10 @@ const highestMileageVehicle = data
   .map(({ vehicles }) => vehicles.sort((a, b) => b.mileage - a.mileage)[0])
   .sort((a, b) => b.mileage - a.mileage)[0];
 
-fs.writeFile("highestMileageVehicle.Json", String(highestMileageVehicle));
+fs.writeFile(
+  "highestMileageVehicle.Json",
+  JSON.stringify(highestMileageVehicle)
+);
 
 const totalMileage = data.reduce((total, currentPerson) => {
   total += currentPerson.vehicles.reduce((personTotal, currentVehicle) => {
