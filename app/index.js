@@ -1,5 +1,6 @@
 import data from "./data.js";
 import { promises as fs } from "fs";
+import express from "express";
 
 const highestMileageVehicle = data
   .map(({ vehicles }) => vehicles.sort((a, b) => b.mileage - a.mileage)[0])
