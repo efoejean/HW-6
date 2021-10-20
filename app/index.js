@@ -48,15 +48,12 @@ fs.writeFile("totalMileage4IL.Json", String(totalMileage4IL));
 
 const app = express();
 
-app.get("/:page", async (req, res) => {
-  fs.readFile(`${req.params.page}.Json`, "utf-8");
-  await ((contents) => {
-    res.json(contents);
-  }).catch(() => {
-    res.statusCode = 404;
-    res.end("Page cannot be found!");
+(async () => {
+  app.get("/:page", async (req, res) => {
+    const result = await fs.readFile(`${req.params.page}.Json`, "utf-8");
+    res.json(result);
   });
-});
+})();
 
 app.listen(3000, () => {
   console.log("Server is running");
