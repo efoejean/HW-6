@@ -6,10 +6,12 @@ const highestMileageVehicle = data
   .map(({ vehicles }) => vehicles.sort((a, b) => b.mileage - a.mileage)[0])
   .sort((a, b) => b.mileage - a.mileage)[0];
 
-fs.writeFile(
-  "highestMileageVehicle.Json",
-  JSON.stringify(highestMileageVehicle)
-);
+(async () => {
+  await fs.writeFile(
+    "highestMileageVehicle.Json",
+    JSON.stringify(highestMileageVehicle)
+  );
+})();
 
 const totalMileage = data.reduce((total, currentPerson) => {
   total += currentPerson.vehicles.reduce((personTotal, currentVehicle) => {
@@ -46,15 +48,14 @@ fs.writeFile("totalMileage4IL.Json", String(totalMileage4IL));
 
 const app = express();
 
-app.get("/:page", (req, res) => {
-  fs.readFile(`${req.params.page}.Json`, "utf-8")
-    .then((contents) => {
-      res.json(contents);
-    })
-    .catch(() => {
-      res.statusCode = 404;
-      res.end("Page cannot be found!");
-    });
+app.get("/:page", async (req, res) => {
+  fs.readFile(`${req.params.page}.Json`, "utf-8");
+  await ((contents) => {
+    res.json(contents);
+  }).catch(() => {
+    res.statusCode = 404;
+    res.end("Page cannot be found!");
+  });
 });
 
 app.listen(3000, () => {
